@@ -14,7 +14,7 @@ function Generate-Sender {
 }
 ### Generates semi-random subject consisting of the below words preceded by text and date/time
 ### Format AB 01/23/45 12:34 AM 
-### Regex to find this subject to be used in Triage rule ‘(AB).\d{1,2}\/\d{1,2}\/\d{2}.\d{1,2}:\d{1,2}.(AM|PM)’
+### Regex to find this subject to be used in Triage rule ‘(ABC).\d{1,2}\/\d{1,2}\/\d{2}.\d{1,2}:\d{1,2}.(AM|PM)’
 function Generate-Subject {
 
     $dictionary = @('Up-Sell', 'Skill set', 'Non-Traditional Management', 'Cross Sell', 'Reinvigorate', 'Run it up the flagpole', 'Revenue', 'Knowledge Base', 'Touch Base', 'Laser-focused', 'Utilize', 
@@ -24,7 +24,7 @@ function Generate-Subject {
 
     $date = Get-date -Format g
     $subject = $dictionary | Get-Random -Count 3 ### This number determines the number of word pairs in the email subject
-    return ("AB ") + ($date -join ' ') + (" ") + ($subject -join ' ') ###Change “AB “ for custom subject prefix
+    return ("ABC") + ($date -join ' ') + (" ") + ($subject -join ' ') ###Change “ABC“ for custom subject prefix
 }
 
 $emailBody = @"
