@@ -1,5 +1,5 @@
-dan.clark@cofensedemo.com
-dclark@cofensedemo.com
+First.LastName@cofensedemo.com
+FirstInitial.LastName@cofensedemo.com
 Matthew.Flounder-z@cofensedemo.com
 James.Mackerel-z@cofensedemo.com
 John.Mullet-z@cofensedemo.com
