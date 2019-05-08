@@ -1,5 +1,5 @@
 First.LastName@cofensedemo.com
-FirstInitial.LastName@cofensedemo.com
+FirstInitialLastName@cofensedemo.com
 Matthew.Flounder-z@cofensedemo.com
 James.Mackerel-z@cofensedemo.com
 John.Mullet-z@cofensedemo.com
