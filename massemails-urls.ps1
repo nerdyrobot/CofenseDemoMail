@@ -23,7 +23,7 @@ function Generate-Subject {
         'Re-engagement', 'Heavy lifting', 'Heads up', 'Back-end', 'Service Oriented', 'Engage', 'Monoply', 'Goal oriented', 'Facilitate', 'Monetize', 'Revisit', 'Center of Excellence', 'E-commerce', 'Brain Storm', 
         'Mind Shower', 'Upside', 'Business Opportunity', 'Demographic', 'ETA', 'Cost', 'Walk the Talk', 'B2B', 'Touchpoints')
 
-    $date = Get-date -Format g ### Get-Date -Uformat %H:%M:%S
+    $date = Get-Date -Uformat %H:%M:%S
     $subject = $dictionary | Get-Random -Count 3 ### This number determines the number of word pairs in the email subject
     return ("ABC") + ($date -join ' ') + (" ") + ($subject -join ' ') ###Change “AB “ for custom subject prefix
 
