@@ -157,7 +157,7 @@ $strChosenDomains
 </html>
 "@
 
-$smtpServer = "cofensedemo-com.mail.protection.outlook.com"
+$smtpServer = "demo-cofenseuat-com.mail.protection.outlook.com"
 
 
 $allUsers = Get-Content -Path "$PSScriptRoot\recipient\recipients.txt"
