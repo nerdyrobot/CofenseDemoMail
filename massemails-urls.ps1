@@ -210,3 +210,5 @@ $chosenArUsers | Where-Object {$_} | ForEach-Object {
 $totalSent = $otherUsersNmber + $arRecipentNmber + 2
 Write-Host "Total Messages Sent =" $totalSent
 Write-Host "Total Auto-reporting =" $arRecipentNmber
+Write-Host "Domains:"
+Write-Host $strChosenDomains
