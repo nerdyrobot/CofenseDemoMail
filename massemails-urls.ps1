@@ -160,16 +160,52 @@ $strChosenDomains
 $smtpServer = "demo-cofenseuat-com.mail.protection.outlook.com"
 
 
-$allUsers = Get-Content -Path "$PSScriptRoot\recipient\recipients.txt"
+##Sends Emails joe-user.txt list which should be the Primary and secondary Demo.cofenseUAT accounts##
+$JoeUser = Get-Content -Path "$PSScriptRoot\recipient\joe_user.txt"
 
-$allUsers | Where-Object {$_} | ForEach-Object {
-    
+$JoeUser | Where-Object {$_} | ForEach-Object {
+
     $to = $_
     $from = Generate-Sender
     $subject = Generate-Subject
-    
+
     Write-Host "Sending email from $from to $to with subject `"$subject`""
 
-    Send-MailMessage -From $from -To $to -Subject $subject -Body $emailBody -SmtpServer $smtpServer -BodyAsHtml -UseSsl
+    Send-MailMessage -WarningAction SilentlyContinue -From $from -To $to -Subject $subject -Body $emailBody -SmtpServer $smtpServer -BodyAsHtml -UseSsl
 
 }
+
+##Sends Emails to randonly selected number of users from the recipients.txt list##
+$otherUsers = Get-Content -Path "$PSScriptRoot\recipient\recipients.txt"
+$otherUsersNmber = get-random -Minimum 1 -Maximum 5
+$chosenOtherUsers = $otherUsers.GetEnumerator() | get-random -Count $otherUsersNmber
+$chosenOtherUsers | Where-Object {$_} | ForEach-Object {
+
+    $to = $_
+    $from = Generate-Sender
+    $subject = Generate-Subject
+
+    Write-Host "Sending email from $from to $to with subject `"$subject`""
+
+    Send-MailMessage -WarningAction SilentlyContinue -From $from -To $to -Subject $subject -Body $emailBody -SmtpServer $smtpServer -BodyAsHtml -UseSsl
+
+}
+
+##Send Emails to a randonly selected group of users with a varying from the ar_recipients.txt list##
+$arUsers = Get-Content -Path "$PSScriptRoot\recipient\ar_recipients.txt"
+$arRecipentNmber = get-random -Minimum 1 -Maximum 5
+$chosenArUsers = $arUsers.GetEnumerator() | get-random -Count $arRecipentNmber
+
+$chosenArUsers | Where-Object {$_} | ForEach-Object {
+
+    $to = $_
+    $from = Generate-Sender
+    $subject = Generate-Subject
+
+    Write-Host "Sending email from $from to $to with subject `"$subject`""
+    Send-MailMessage -WarningAction SilentlyContinue -From $from -To $to -Subject $subject -Body $emailBody -SmtpServer $smtpServer -BodyAsHtml -UseSsl
+
+}
+##Prints the total number of emails sent by the script##
+$totalSent = $otherUsersNmber + $arRecipentNmber + 2
+Write-Host "Total Messages Sent =" $totalSent
