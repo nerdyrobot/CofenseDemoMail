@@ -100,18 +100,50 @@ $file = $file_dictionary | Get-Random -Count 1
 
 ### Selects recipients from the .txt file referenced in the recipients folder in mailscript folder
 ### Generates an emails for each recipient in the list
-$allUsers = Get-Content -Path "$PSScriptRoot\recipient\recipients.txt"
+##Sends Emails joe-user.txt list which should be the Primary and secondary Demo.cofenseUAT accounts##
+$JoeUser = Get-Content -Path "$PSScriptRoot\recipient\joe_user.txt"
 
-$allUsers | Where-Object {$_} | ForEach-Object {
-    
+$JoeUser | Where-Object {$_} | ForEach-Object {
+
     $to = $_
     $from = Generate-Sender
     $subject = Generate-Subject
-    
+
     Write-Host "Sending email from $from to $to with subject `"$subject`""
 
-### Uncomment ‘-Attachments $attachment’ below to enable attachments
-    Send-MailMessage -From $from -To $to -Subject $subject -Body $emailBody -SmtpServer $smtpServer -BodyAsHtml -UseSsl -Attachments "$PSScriptRoot\attachment\$file"
+    Send-MailMessage -WarningAction SilentlyContinue -From $from -To $to -Subject $subject -Body $emailBody -SmtpServer $smtpServer -BodyAsHtml -UseSsl -Attachments "$PSScriptRoot\attachment\$file"
+
+}
+
+##Sends Emails to randonly selected number of users from the recipients.txt list##
+$otherUsers = Get-Content -Path "$PSScriptRoot\recipient\recipients.txt"
+$otherUsersNmber = get-random -Minimum 2 -Maximum 6
+$chosenOtherUsers = $otherUsers.GetEnumerator() | get-random -Count $otherUsersNmber
+$chosenOtherUsers | Where-Object {$_} | ForEach-Object {
+
+    $to = $_
+    $from = Generate-Sender
+    $subject = Generate-Subject
+
+    Write-Host "Sending email from $from to $to with subject `"$subject`""
+
+    Send-MailMessage -WarningAction SilentlyContinue -From $from -To $to -Subject $subject -Body $emailBody -SmtpServer $smtpServer -BodyAsHtml -UseSsl -Attachments "$PSScriptRoot\attachment\$file"
+
+}
+
+##Send Emails to a randonly selected group of users with a varying from the ar_recipients.txt list##
+$arUsers = Get-Content -Path "$PSScriptRoot\recipient\ar_recipients.txt"
+$arRecipentNmber = get-random -Minimum 2 -Maximum 7
+$chosenArUsers = $arUsers.GetEnumerator() | get-random -Count $arRecipentNmber
+
+$chosenArUsers | Where-Object {$_} | ForEach-Object {
+
+    $to = $_
+    $from = Generate-Sender
+    $subject = Generate-Subject
+
+    Write-Host "Sending email from $from to $to with subject `"$subject`""
+    Send-MailMessage -WarningAction SilentlyContinue -From $from -To $to -Subject $subject -Body $emailBody -SmtpServer $smtpServer -BodyAsHtml -UseSsl -Attachments "$PSScriptRoot\attachment\$file"
 
 }
 ##Prints the total number of emails sent by the script##
