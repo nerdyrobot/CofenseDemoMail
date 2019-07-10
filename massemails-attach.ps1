@@ -148,6 +148,9 @@ $chosenArUsers | Where-Object {$_} | ForEach-Object {
 }
 ##Prints the total number of emails sent by the script##
 $totalSent = $otherUsersNmber + $arRecipentNmber + 2
+Write-Host "____________________"
 Write-Host "Total Messages Sent =" $totalSent
+Write-Host "____________________"
 Write-Host "Total Auto-reporting =" $arRecipentNmber
+Write-Host "____________________"
 Write-Host "Attachment Sent =" $file
