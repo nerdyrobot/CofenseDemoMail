@@ -177,7 +177,7 @@ $JoeUser | Where-Object {$_} | ForEach-Object {
 
 ##Sends Emails to randonly selected number of users from the recipients.txt list##
 $otherUsers = Get-Content -Path "$PSScriptRoot\recipient\recipients.txt"
-$otherUsersNmber = get-random -Minimum 1 -Maximum 5
+$otherUsersNmber = get-random -Minimum 2 -Maximum 6
 $chosenOtherUsers = $otherUsers.GetEnumerator() | get-random -Count $otherUsersNmber
 $chosenOtherUsers | Where-Object {$_} | ForEach-Object {
 
@@ -193,7 +193,7 @@ $chosenOtherUsers | Where-Object {$_} | ForEach-Object {
 
 ##Send Emails to a randonly selected group of users with a varying from the ar_recipients.txt list##
 $arUsers = Get-Content -Path "$PSScriptRoot\recipient\ar_recipients.txt"
-$arRecipentNmber = get-random -Minimum 1 -Maximum 5
+$arRecipentNmber = get-random -Minimum 2 -Maximum 7
 $chosenArUsers = $arUsers.GetEnumerator() | get-random -Count $arRecipentNmber
 
 $chosenArUsers | Where-Object {$_} | ForEach-Object {
