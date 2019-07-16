@@ -42,7 +42,7 @@ $emailBody = @"
 </html>
 "@
 
-$smtpServer = "demo.cofenseuat-com.mail.protection.outlook.com"
+$smtpServer = "demo-cofenseuat-com.mail.protection.outlook.com"
 
 $file_dictionary = @('0ciavsIp6PRn.iso',
                     '0HPjNn8YgUNB.iso',
